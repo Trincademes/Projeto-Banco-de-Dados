@@ -20,6 +20,9 @@ O banco de dados proposto contempla as seguintes entidades: CURSO, DISCIPLINA, P
 
 # Modelagem Conceitual
 
+![Conceitual](conceitual.png)
+
+
 ## Entidades e Atributos
 
 * **CURSO:** id\_curso (PK), nome\_curso, duracao
@@ -41,6 +44,8 @@ O banco de dados proposto contempla as seguintes entidades: CURSO, DISCIPLINA, P
 ---
 
 # Modelagem Lógica
+
+![lógico](logico.png)
 
 As entidades foram convertidas para tabelas relacionais com chaves primárias e estrangeiras:
 
