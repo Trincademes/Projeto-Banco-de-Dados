@@ -1,30 +1,24 @@
-**Projeto Final - Banco de Dados Relacional**
+# Projeto Final: Banco de Dados Relacional
 
-**Tema:** Sistema Acadêmico Universitário
+## Objetivo
 
----
+Este repositório contém o projeto final da disciplina de Banco de Dados Relacional. O objetivo é aplicar os conceitos estudados, incluindo modelagem, normalização e manipulação de dados utilizando DDL, DML, DQL — com bonificação para comandos DCL e DTL.
 
-# Introdução
+## Integrantes do Grupo
 
-Este projeto tem como objetivo desenvolver um sistema de banco de dados relacional para gerenciar informações acadêmicas de uma instituição de ensino superior. O sistema foi concebido para registrar e organizar dados de cursos, disciplinas, professores, salas, turmas e alunos. Além disso, permite o controle de matrículas dos alunos em turmas, com possibilidade de acompanhamento de notas e situações acadêmicas.
+- João Victor Machado Pinto
+- Pedro Vieira Cavalciuk
+- Vitor Henrique da Silva Fogaça
 
-# Objetivo do Projeto
+## Tema Escolhido
 
-Implementar e documentar um banco de dados relacional completo utilizando PostgreSQL, aplicando as técnicas de modelagem conceitual, modelagem lógica, normalização e execução de scripts SQL (DDL, DML e DQL).
+Gerenciamento universitário
 
-# Descrição Geral
+O sistema tem como objetivo gerenciar informações relacionadas a cursos, disciplinas, professores, alunos, turmas, salas e matrículas. Ele permite que instituições de ensino organizem melhor seus recursos e acompanhem a trajetória acadêmica dos estudantes. Esse projeto demonstra a aplicação prática dos conceitos de banco de dados relacionais, como modelagem, integridade referencial e normalização.
 
-O banco de dados proposto contempla as seguintes entidades: CURSO, DISCIPLINA, PROFESSOR, SALA, TURMA, ALUNO e MATRÍCULA. A estrutura permite o cadastro de informações completas e a geração de relatórios através de consultas SQL.
+## Modelagem de Dados
 
----
-
-# Modelagem Conceitual
-
-![Conceitual](conceitual.png)
-
-
-## Entidades e Atributos
-
+### Entidades, Atributos e Relacionamentos
 * **CURSO:** id\_curso (PK), nome\_curso, duracao
 * **DISCIPLINA:** id\_disciplina (PK), nome\_disciplina, carga\_horaria, id\_curso (FK)
 * **PROFESSOR:** id\_professor (PK), nome\_professor, email, titulacao
@@ -32,194 +26,74 @@ O banco de dados proposto contempla as seguintes entidades: CURSO, DISCIPLINA, P
 * **TURMA:** id\_turma (PK), semestre, horario, id\_disciplina (FK), id\_sala (FK), id\_professor (FK)
 * **ALUNO:** id\_aluno (PK), nome\_aluno, matricula, email, id\_curso (FK)
 * **MATRÍCULA:** id\_matricula (PK), id\_aluno (FK), id\_turma (FK), data\_matricula, nota\_final, status
+Descrição geral das entidades envolvidas e seus relacionamentos.
 
-## Relacionamentos
+### Diagrama Entidade-Relacionamento (DER)
 
-* CURSO possui várias DISCIPLINAS
-* DISCIPLINA pode ser ofertada em várias TURMAS
-* TURMA ocorre em uma SALA e é ministrada por um PROFESSOR
-* ALUNO pertence a um CURSO
-* ALUNO se matricula em várias TURMAS (relacionamento muitos-para-muitos via MATRÍCULA)
 
----
+![DER](conceitual.png)
 
-# Modelagem Lógica
 
-![lógico](logico.png)
+## Normalização
 
-As entidades foram convertidas para tabelas relacionais com chaves primárias e estrangeiras:
+O banco de dados foi normalizado até a **Terceira Forma Normal (3NF)**.
 
-### CURSO
+1NF: Eliminação de grupos repetitivos — todas as tabelas têm atributos atômicos.
 
-* id\_curso (PK)
-* nome\_curso
-* duracao
+2NF: Eliminação de dependências parciais — todas as tabelas têm chaves primárias simples (exceto possivelmente MATRICULA), e atributos dependem totalmente delas.
 
-### DISCIPLINA
+3NF: Eliminação de dependências transitivas — os atributos não dependem de outros atributos que não sejam chave.
 
-* id\_disciplina (PK)
-* nome\_disciplina
-* carga\_horaria
-* id\_curso (FK)
+Exemplo:
+Na tabela ALUNO, o curso é armazenado por meio de chave estrangeira, evitando duplicidade de dados como nome do curso.
 
-### PROFESSOR
+## Scripts SQL
 
-* id\_professor (PK)
-* nome\_professor
-* email
-* titulacao
+Todos os scripts estão localizados na pasta `/sql`.
 
-### SALA
+### DDL (Data Definition Language)
 
-* id\_sala (PK)
-* numero
-* capacidade
-* bloco
+- Criação de tabelas
+- Definição de chaves primárias e estrangeiras
+- Restrições de integridade
 
-### TURMA
+> Caminho: `sql/ddl.sql`
 
-* id\_turma (PK)
-* semestre
-* horario
-* id\_disciplina (FK)
-* id\_sala (FK)
-* id\_professor (FK)
+### DML (Data Manipulation Language)
 
-### ALUNO
+> Caminho: `sql/dml.sql`
 
-* id\_aluno (PK)
-* nome\_aluno
-* matricula
-* email
-* id\_curso (FK)
+### DQL (Data Query Language)
 
-### MATRÍCULA
 
-* id\_matricula (PK)
-* id\_aluno (FK)
-* id\_turma (FK)
-* data\_matricula
-* nota\_final
-* status
+> Caminho: `sql/dql.sql`
 
----
+### DCL (Data Control Language)
 
-# Normalização
+> Caminho: `sql/dcl.sql`
 
-### 1ª Forma Normal (1FN)
 
-Todas as tabelas contêm apenas atributos atômicos, sem grupos repetitivos ou listas de valores.
+### DTL (Data Transaction Language)
 
-### 2ª Forma Normal (2FN)
+> Caminho: `sql/dtl.sql`
 
-Não existem dependências parciais. A tabela MATRÍCULA utiliza chave artificial, evitando chaves compostas.
 
-### 3ª Forma Normal (3FN)
 
-Não existem dependências transitivas. Os atributos não-chave dependem apenas da chave primária de suas tabelas.
+## Documentação (ABNT)
 
----
+A documentação completa está disponível na pasta `/documentacao`, estruturada conforme as normas da ABNT, contendo:
 
-# Scripts SQL
+- Introdução
+- Modelagem conceitual e lógica
+- Scripts comentados
+- Conclusão e referências
 
-## DDL (Data Definition Language)
+> Caminho: `documentacao/projeto-final.pdf`
 
-```sql
-CREATE TABLE CURSO (
-  id_curso SERIAL PRIMARY KEY,
-  nome_curso VARCHAR(100) NOT NULL,
-  duracao INTEGER
-);
 
-CREATE TABLE DISCIPLINA (
-  id_disciplina SERIAL PRIMARY KEY,
-  nome_disciplina VARCHAR(100) NOT NULL,
-  carga_horaria INTEGER,
-  id_curso INTEGER REFERENCES CURSO(id_curso)
-);
+## Requisitos Técnicos
 
-CREATE TABLE PROFESSOR (
-  id_professor SERIAL PRIMARY KEY,
-  nome_professor VARCHAR(100) NOT NULL,
-  email VARCHAR(100),
-  titulacao VARCHAR(50)
-);
-
-CREATE TABLE SALA (
-  id_sala SERIAL PRIMARY KEY,
-  numero VARCHAR(10) NOT NULL,
-  capacidade INTEGER,
-  bloco VARCHAR(10)
-);
-
-CREATE TABLE TURMA (
-  id_turma SERIAL PRIMARY KEY,
-  semestre VARCHAR(10),
-  horario VARCHAR(20),
-  id_disciplina INTEGER REFERENCES DISCIPLINA(id_disciplina),
-  id_sala INTEGER REFERENCES SALA(id_sala),
-  id_professor INTEGER REFERENCES PROFESSOR(id_professor)
-);
-
-CREATE TABLE ALUNO (
-  id_aluno SERIAL PRIMARY KEY,
-  nome_aluno VARCHAR(100) NOT NULL,
-  matricula VARCHAR(20) UNIQUE NOT NULL,
-  email VARCHAR(100),
-  id_curso INTEGER REFERENCES CURSO(id_curso)
-);
-
-CREATE TABLE MATRICULA (
-  id_matricula SERIAL PRIMARY KEY,
-  id_aluno INTEGER REFERENCES ALUNO(id_aluno),
-  id_turma INTEGER REFERENCES TURMA(id_turma),
-  data_matricula DATE,
-  nota_final DECIMAL(4,2),
-  status VARCHAR(20)
-);
-```
-
-## DML (Data Manipulation Language)
-
-```sql
--- Inserindo dados exemplo
-INSERT INTO CURSO (nome_curso, duracao) VALUES ('Sistemas de Informação', 8);
-INSERT INTO DISCIPLINA (nome_disciplina, carga_horaria, id_curso) VALUES ('Banco de Dados', 60, 1);
-INSERT INTO PROFESSOR (nome_professor, email, titulacao) VALUES ('João da Silva', 'joao@faculdade.edu', 'Mestre');
-INSERT INTO SALA (numero, capacidade, bloco) VALUES ('101', 40, 'A');
-INSERT INTO TURMA (semestre, horario, id_disciplina, id_sala, id_professor) VALUES ('2024.1', '19h-22h', 1, 1, 1);
-INSERT INTO ALUNO (nome_aluno, matricula, email, id_curso) VALUES ('Maria Oliveira', '202412345', 'maria@aluno.edu', 1);
-INSERT INTO MATRICULA (id_aluno, id_turma, data_matricula, nota_final, status) VALUES (1, 1, '2024-03-01', 9.5, 'Aprovado');
-```
-
-## DQL (Data Query Language)
-
-```sql
--- Consultar todos os alunos e suas respectivas turmas
-SELECT a.nome_aluno, t.semestre, d.nome_disciplina
-FROM ALUNO a
-JOIN MATRICULA m ON a.id_aluno = m.id_aluno
-JOIN TURMA t ON t.id_turma = m.id_turma
-JOIN DISCIPLINA d ON t.id_disciplina = d.id_disciplina;
-
--- Listar todas as disciplinas de um curso
-SELECT d.nome_disciplina
-FROM DISCIPLINA d
-JOIN CURSO c ON d.id_curso = c.id_curso
-WHERE c.nome_curso = 'Sistemas de Informação';
-```
-
----
-
-# Conclusão
-
-O banco de dados acadêmico foi projetado de forma eficiente, seguindo os princípios de modelagem e normalização. A estrutura permite escalabilidade e manutenção fácil, podendo ser expandida para futuras funcionalidades, como histórico escolar, controle financeiro e gestão de calendário acadêmico.
-
----
-
-# Referências
-
-* Elmasri, R.; Navathe, S. B. "Sistemas de Banco de Dados".
-* Date, C. J. "Introdução a Sistemas de Bancos de Dados".
-* Documentação Oficial PostgreSQL
-* ABNT NBR 6023:2018, 6027:2012 e 14724:2011
+- **SGBD utilizado**: PostgreSQL (ou outro, especificar)
+- **Versão recomendada**: PostgreSQL 15+
+- **Ferramentas utilizadas**:
+  - PgAdmin, DBeaver, VSCode, etc.
