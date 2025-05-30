@@ -31,7 +31,7 @@ Descrição geral das entidades envolvidas e seus relacionamentos.
 ### Diagrama Entidade-Relacionamento (DER)
 
 
-![DER](conceitual.png)
+![DER](der.png)
 
 
 ## Normalização
@@ -57,25 +57,26 @@ Todos os scripts estão localizados na pasta `/sql`.
 - Definição de chaves primárias e estrangeiras
 - Restrições de integridade
 
-> Caminho: `sql/ddl.sql`
+[Abrir o DDL](sql/ddl.sql)
 
 ### DML (Data Manipulation Language)
 
-> Caminho: `sql/dml.sql`
+[Abrir o DML](sql/dml.sql)
 
 ### DQL (Data Query Language)
 
 
-> Caminho: `sql/dql.sql`
+[Abrir o DQL](sql/dql.sql)
 
 ### DCL (Data Control Language)
 
-> Caminho: `sql/dcl.sql`
+[Abrir o DCL](sql/dcl.sql)`
 
 
 ### DTL (Data Transaction Language)
 
-> Caminho: `sql/dtl.sql`
+[Abrir o DTL](sql/dtl.sql)
+
 
 
 
