@@ -31,7 +31,7 @@ Descrição geral das entidades envolvidas e seus relacionamentos.
 ### Diagrama Entidade-Relacionamento (DER)
 
 
-![DER](der.png)
+![DER](der.jpg)
 
 
 ## Normalização
