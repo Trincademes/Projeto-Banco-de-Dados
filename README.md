@@ -94,7 +94,7 @@ A documentação completa está disponível na pasta `/documentacao`, estruturad
 
 ## Requisitos Técnicos
 
-- **SGBD utilizado**: PostgreSQL (ou outro, especificar)
+- **SGBD utilizado**: PostgreSQL 
 - **Versão recomendada**: PostgreSQL 15+
 - **Ferramentas utilizadas**:
-  - PgAdmin, DBeaver, VSCode, etc.
+  - PostgreSQL, Docker, VSCode, MySQl e draw.io.
