@@ -50,4 +50,3 @@ CREATE TABLE MATRICULA (
   nota_final DECIMAL(4,2),
   status VARCHAR(20)
 );
-
