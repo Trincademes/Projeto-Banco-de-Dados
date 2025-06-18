@@ -82,15 +82,14 @@ Todos os scripts estão localizados na pasta `/sql`.
 
 ## Documentação (ABNT)
 
-A documentação completa está disponível aqui [Abrir a documentação(./BancoDeDadosDocument.pdf), estruturada conforme as normas da ABNT, contendo:
+Está estruturada conforme as normas da ABNT, contendo:
 
 - Introdução
 - Modelagem conceitual e lógica
 - Scripts comentados
 - Conclusão e referências
 
-> Caminho: `documentacao/projeto-final.pdf`
-
+[Abrir a documentação](./BancoDeDadosDocument.pdf)
 
 ## Requisitos Técnicos
 
